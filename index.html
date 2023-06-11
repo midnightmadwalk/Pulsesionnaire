@@ -21,6 +21,12 @@
     .bold-text {
       font-weight: bold;
     }
+
+    .copy-button {
+      display: inline-block;
+      cursor: pointer;
+
+    }
   </style>
 </head>
 <body>
@@ -28,7 +34,24 @@
     <h1 class="bold-text">Pulsesionnaire</h1>
     <h2 class="bold-text">No Twitter, no Telegram, no bots!</h2>
     <p class="bold-text">This website is just for you mfers to find the contract:</p>
-    <p class="bold-text contract-address">0x2772789b7Db8F3cB504D91b557D38A429Cf225ce</p>
+    <p class="bold-text contract-address">0x2772789b7Db8F3cB504D91b557D38A429Cf225ce
+      <button class="copy-button" onclick="copyContractAddress()">Copy</button>
+    </p>
   </div>
+
+  <script>
+    function copyContractAddress() {
+      const contractAddressElement = document.querySelector('.contract-address');
+      const contractAddress = contractAddressElement.textContent;
+
+      navigator.clipboard.writeText(contractAddress)
+        .then(() => {
+          alert('Contract address copied to clipboard!');
+        })
+        .catch((error) => {
+          console.error('Failed to copy contract address:', error);
+        });
+    }
+  </script>
 </body>
 </html>
